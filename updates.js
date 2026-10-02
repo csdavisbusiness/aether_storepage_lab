@@ -3,6 +3,46 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-02',
+    title: 'v0.2.1 — A new look, and a way to tell us what broke',
+    author: 'Squishtech Industries',
+    body: `The third playtest build is out. There are no new kinds of case in this one, but nearly everything you look at has changed: the people, the furniture, the rooms, the notebook and the map. And you can now report a bug without leaving the game.
+
+NEW
+• Report a bug from inside the game: press F1 (or Esc → Report a bug), say what happened, and the game saves one file to your desktop with your words, a screenshot of what you were looking at, where you were in the case and the details of your PC. "Save and email it" opens your mail program addressed to us; attach the file and send. Nothing is sent unless you send it.
+
+CHANGED
+• New-look citizens: top-heavy voxel figures with five face shapes, layered hair or a hat, and coats in three cuts. They walk on real legs now instead of gliding, and so do passers-by and other detectives in co-op.
+• New furniture everywhere: beds, couches, armchairs, tables and chairs in their own fabrics, woods and stone, proper kitchen cabinets, real toilets and glass shower cabins, and benches on the street.
+• Bigger buildings, with rooms you can move about in: every lot is about a quarter larger, furniture keeps the floor in front of it clear, kitchens are rooms of their own and bathrooms are twice the size. Some buildings have switchback stairs.
+• Glass can be shot out: windows, office glass walls, the glass in doors, shower cabins and the gun counter's case. It is put back after a few minutes.
+• Chairs and stools slide out of the way when you walk into them, and go over when shot.
+• Fire escapes reach the ground: let the ladder down from the landing (E) or shoot it down, then climb.
+• Drawers and shower doors open (E), and so do windows (hold E at the blinds).
+• The notebook reads as a case file: a record for the case, cards for the evidence, a Profile tab for each person, and labelled findings in the inventory.
+• Accusing asks first: you see who, why and how much evidence you cite, and confirm, since a case can only be closed once.
+• The wire: messages arrive at the top right as tagged, time-stamped slips, and the last few are listed under the clock when you raise your watch (Q).
+• The map is a schematic, with street names, a scale bar and one mark each for you, front doors and the crime scene.
+• A new case screen, a quieter pause menu, and a loading screen that keeps moving.
+• The case opens at night: play starts at 22:00 on the day the body is found.
+• A field of view slider in the settings (55° to 100°).
+
+FIXED
+• Kitchens too tight to walk through, toilets and showers standing in a bathroom's doorway, a slit into the stairwell seen from outside, a parapet standing inside the top of a stairwell, and carpets showing in the gap between storeys from the street.
+
+KNOWN ISSUES
+• A bug in the main menu or on the loading screen can't be reported with F1 yet, only once you are in a case.
+• Saves from v0.2.0 may not rebuild as you left them: every building is larger and every room rearranged.
+• Citizens don't use the lifts, and nobody reacts to gunfire yet.
+• Bigger towns reuse the same four buildings, numbered.
+• A loaded game always starts solo, even if it was saved in co-op.
+• Other players can't see your cigarette.
+• Co-op has still only been tested on one PC and a home network.
+
+WHAT WE WANT TO HEAR
+When something breaks or looks wrong, press F1 there and then and send us the file. Can you get around the new rooms without getting stuck on the furniture? And as ever: was the case fair?`,
+  },
+  {
     date: '2026-09-30',
     title: 'v0.2.0 — Save your case, grow the town',
     author: 'Squishtech Industries',
