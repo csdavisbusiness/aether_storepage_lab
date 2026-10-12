@@ -3,6 +3,54 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-12',
+    title: 'v0.3.0 — A district, its police, and a warrant to serve',
+    author: 'Squishtech Industries',
+    body: `The fourth playtest build is out, and it is the biggest yet. The town is a district now, with a different building on every lot each time. It has police. You have a car. And an accusation no longer ends the case: it puts a warrant out, and finding them is your job. Saves from v0.2.1 can't be loaded.
+
+NEW
+• The district is the town: cases open on a hand-drawn district map, and what stands on each lot is made fresh for each case: bars, diners, shops, graft clinics, laundries, offices and flats.
+• The district is policed: officers walk it in pairs round the clock. Fire a gun without cause where they can see and they order you to put it away: do, and the department is fined; fire again and they fire on you. Anyone shooting at you is shot at by them.
+• An accusation is yours to carry out: one that sticks puts a warrant out. Show it to them ([E]): some give up, some run, some fight. The town rings in sightings over the wire, anyone can be asked "Have you seen them?", and their friends hide them and lie about it. Some warrants are death warrants.
+• You have a car, and there is traffic. [E] to get in and out, the walking keys to drive, [L] for the headlamps. It climbs a kerb with a bump.
+• Build your case: the accusation is a sentence you fill in, and its page shows what ties your suspect to the weapon, what puts them there and why they would, each filling in as you cite evidence.
+• The notebook knows who you know: everyone starts as a stranger, and a name comes into your notes when someone gives it to you, when it is on something you find, or when you look it up. Every name, place and time is a link.
+• The Sylvia board: pin the case up, tie threads, write notes of your own (a long one becomes a page off a pad), and drag cards onto the accusation along its foot.
+• Show people what you've found in an interview. Ask anyone the hours they keep. Read the calendar inside a flat's door and the rota inside a workplace's. Take the night porter's door book.
+• More to find: a hand's smear on a wall at the scene, a bloodied towel in somebody's washing, the lid of the bin a weapon was dropped in. People pass on what they were told about each other.
+• Co-op over the internet through playit.gg: only the host sets it up, and a game can be opened to partners at any time from the pause screen.
+• Sewers under the streets, reached from basements.
+• A city that sounds like one: a drone for each kind of place, engines on the street, jazz from shop speakers and lifts, and people who speak when you question them.
+• Find your way indoors: STAIRS and LIFT over their doors, floor numbers in the stairwell, a floor guide in every lobby, and each building's name at its corners.
+• Crime scenes last: tape, a chalk outline, and a cleaning a few days later. A discovery sounds like one: MATCH and CLASH on the wire.
+• Report a bug from anywhere with F1, the menu and the loading screen included. Choose your own keys.
+
+CHANGED
+• Everyone has a new body, and people pass the time: they sit, drink, smoke, read their phones, take the lift, sleep in their own beds, and get out of the way of gunfire.
+• The six-gun is the Boteya Heavy Six, firing .44 Boteya Long.
+• Signs are built from the same cubes as the rest of the city, neon included.
+• The map zooms and slides, names what you point at, and follows you while it is open.
+• Diners, bars, shops and laundries are laid out as what they are, with staff behind their counters.
+• The text is larger by default, and frames are capped at 120.
+
+FIXED
+• Doors and furniture vanishing in front of you in some hallways. A body that could only be examined from one spot. Evidence unticked whenever the notebook was reopened. A partner's action putting the two cities out of step while the host waited on the watch. Sunlight in basements. Gaps beside stairwells and lift shafts. Furniture in front of lift doors. A weapon in a storm drain lying under the snow.
+
+KNOWN ISSUES
+• Saves from v0.2.1 can't be loaded.
+• Co-op has been played through by script across a real internet tunnel and stayed in step, but not by two people.
+• The police don't come to the shot that kills the victim. Trespass and theft mean nothing to them yet. Shooting an officer costs no more than shooting anyone.
+• Someone who fights a warrant after killing with a knife or a wrench still pulls a pistol.
+• A weapon thrown away far from the scene has nothing pointing to it.
+• Nothing is for sale at a graft clinic, the telephones don't work, and nobody but you goes down to the sewers.
+• No gamepad.
+
+WHAT WE NEED YOU TO TEST
+With a partner: join through playit.gg and tell us how it went. Fire a gun in front of the police with no warrant out and watch what they do to each of you on both screens. Go after someone who runs from a warrant together. Watch each other drive. Play for an hour with one of you waiting on the watch, then compare what you each see.
+On your own: play a whole case and its warrant to the end, then a second case, and tell us where you got stuck. Did you work out the shooting rules for yourself? How does it run (F3), and how does it sound?
+Whenever something looks wrong, press F1 there and then. In co-op, everyone press it at the same moment.`,
+  },
+  {
     date: '2026-10-02',
     title: 'v0.2.1 — A new look, and a way to tell us what broke',
     author: 'Squishtech Industries',
