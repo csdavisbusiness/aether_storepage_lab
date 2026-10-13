@@ -3,6 +3,37 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-13',
+    title: 'v0.3.1 — Saves that load, and a second case you can close',
+    author: 'Squishtech Industries',
+    body: `A fix build, a day after v0.3.0, for two faults that mattered. A game saved on the district map came back as a different town. And after your first case, the next one's evidence lay where the first case's had been, so a second case could hardly be closed. Both are put right, and a save made in v0.3.0 is repaired as you load it. Both players in co-op need v0.3.1.
+
+FIXED
+• A saved game on the district map loads the town it was saved in. Saves made in v0.3.0 are put right as they are loaded.
+• Opening a game to co-op from the pause screen gave your partner a different town on the district map.
+• A second case's evidence is where it belongs: the weapon, the note and the papers of the next case no longer lie where the first case's had.
+• A piece of ambience no longer stops dead at its end, or when you pass quickly through three kinds of place.
+• The case's number on the plate and the headings is the one you typed.
+• A tap of the notebook's key opens it where you left it.
+
+NEW
+• Somebody may have seen it thrown away: a few hours after a body is found, someone who saw a person getting rid of something that night may ring it in.
+• The round turns things up: a weapon dropped in a trash can, a storm drain or a dumpster is found by officers after a day, if you have not found it first. It is left there for you.
+• The victim's home is a lead on the case page until you have been in it.
+• Papers are on tables and in drawers. A drawer with something in it is not quite shut.
+• The Sylvia board: right-click a card for a tick, a cross or a ring over it; lock a note, or all of them, so none is lost by a slip. An address you look up goes up as a note, on a red thread to whose it is.
+• The map fills the screen when you click it or turn the wheel on it.
+
+CHANGED
+• Fewer killings in basements: about one in three, where it was two in three. More are in shops, offices and the victim's own flat.
+• The city directory says its rule at its head: nobody's address is in your notebook until you put it there.
+• Of a stairwell's two doors on a floor, the one that leads nowhere is off-white and has no STAIRS sign.
+
+KNOWN ISSUES
+• A weapon hidden up a roof or on a fire escape is found by nobody but you, unless somebody saw it put there.
+• Saves from v0.2.1 can't be loaded.`,
+  },
+  {
     date: '2026-10-12',
     title: 'v0.3.0 — A district, its police, and a warrant to serve',
     author: 'Squishtech Industries',
