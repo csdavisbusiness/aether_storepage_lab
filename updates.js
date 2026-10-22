@@ -3,6 +3,48 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-22',
+    title: 'v0.4.0 — Colours, locks, and witnesses who run out of patience',
+    author: 'Squishtech Industries',
+    body: `The district has rules now, and people of their own. Everyone holds a clearance colour, and going where yours doesn't reach is a trespass: three marks and the police come for you. Locks can be picked or forced, and what you find past a forced one is tainted. Witnesses have patience, and you can type your own questions, press them, or put a piece of evidence in front of them. Saves from v0.3.1 can't be loaded, and both players in co-op need v0.4.0.
+
+NEW
+• The state's colours: a clearance colour on everyone's identity card, painted along the walls and over the doors of places the public is kept out of. Trespasses are marks; three and there is a warrant out for you. Caught, you are held in a cell.
+• Ways in: pick a lock (hold E) or force it (Shift+E). Safes where you have no right to be are locked too.
+• Stealth: crouch with Ctrl, keep to the dark. Doors and drawers are as loud as you open them, and people come to look.
+• Interviews with patience: type a question or take a suggestion, hold someone to what they said, press them, confront them with evidence. Moorthing cigars buy "just one more thing".
+• Consent: going through someone's coat wants their leave, and they can say no. A case can be given up.
+• Knock at a flat's door and whoever is home answers.
+• Wallets and identity cards, framed photographs to hold up to witnesses, and staff records in filing cabinets.
+• The eye graft (V): prints on door handles glow, and lift onto a card. Shoe prints in the snow at a scene's quiet way in.
+• Roofs are places: smokers go up of an evening, and a killing can happen there. Someone is at home in every flat. Androids take the posts nobody else did.
+• Sit down; pick things up and throw them; smash through cones, barriers and fences in your car; climb out of windows, and mind the drop.
+• A fuller town: night markets, scrapyards, squatters' camps, pharmacies, graft clinics, capsule hotels, storefronts, street screens, road signs, phone booths, arcade cabinets, and the city's own cars. A squad car, an ambulance and a cordon come to a scene, and a fire engine comes through now and then.
+• Shops laid out like shops. Mark the map. Search the Sylvia board.
+• Two new guns, the Pike carbine and the Kestrel. A score by FabienC@RustedMusicStudio.
+• New bodies and faces for everyone in town, and dirt, rust and graffiti on everything.
+
+CHANGED
+• Guns are chosen by kind: 1 handguns, 2 shotguns, 3 automatics, 4 rifles, 5 blades; again for the next of that kind, or the mouse wheel.
+• Gunshots crack, and the big guns boom; the MSSA and the Boteya fire new recordings.
+• Speed feels like speed: the view widens as a car or bike picks up speed, and bikes turn tighter.
+• A hand smeared on a wall shows only through the CypherEye. Lobbies are lit all over at night. An android's eyes glow while it is on.
+• Voices are muffled, as if through a wall.
+
+FIXED
+• Shimmering where surfaces met, at outside corners, on mattresses, washers' doors and cars' kits.
+• Doors, shower doors and modelled doors swing on the right hinges.
+• A shop's shelves could shut you in. A chair you got up from could be flung across the room. People sat sunk into armchairs.
+• Light switches at a crime scene did nothing. The map's arrow pointed where you looked, not where the car was going.
+• Passers-by without heads, and motorbike riders trailing their bikes.
+• The Sylvia board's buttons ran off the screen at smaller window sizes.
+
+KNOWN ISSUES
+• Saves from v0.3.1 can't be loaded.
+• In co-op, a chair one of you shoves stands where it was on the other's machine.
+• The voice is still an experiment. The men's bodies are a first pass.`
+  },
+  {
     date: '2026-10-13',
     title: 'v0.3.1 — Saves that load, and a second case you can close',
     author: 'Squishtech Industries',
