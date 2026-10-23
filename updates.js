@@ -3,6 +3,37 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-23',
+    title: 'v0.4.1 — From your first comments',
+    author: 'Squishtech Industries',
+    body: `A day after v0.4.0, built from what you told us. If the motion made you sick, there's a Comfort page now. Asking for prints or a handwriting sample was hidden; it isn't. And people will talk about each other: where someone lives, who they owe, who they're seeing. Both players in co-op need v0.4.1.
+
+NEW
+• Comfort settings (Settings, Comfort): mouse and aiming sensitivity, invert look, how much speed widens and rolls the view, camera shake, weapon sway, toggle crouch and aim, fewer flashes. Field of view goes to 110.
+• Ask after someone: where they live, whether they owe anyone money, whether they're seeing anyone. Family and friends know an address; lenders say so; debtors and secret lovers lie.
+• Something worth finding: drawers, cupboards, lockers and safes hold cash, cigarettes, a Moorthing or rounds. Taken where you shouldn't be, it's seen like anything else.
+• Pay for their trouble: someone who holds a trespass against you will take money to let it go.
+• The district's rules, readable on the case page.
+• Ride in a partner's car. A horn (H). A 12- or 24-hour clock.
+• A visitor's slip ties its writer's print to its hand. A handwriting sample puts the writer's prints on file. Dispatch's finds are pinned on the map.
+• Co-op turns away a different build, instead of letting two builds drift apart.
+
+CHANGED
+• Case select leads with the case: a briefing of the victim and the scene, each case marked by how it went for you.
+• Patience comes back more slowly.
+• The question line says it narrows the questions, and knows your words: hand, jacket, shoes, home.
+• You're told about your flashlight the first time it's dark. "Show on the map" and the BACK button are easy to see.
+
+FIXED
+• Asking leave in an interview offered only the identity card.
+• The turntable reset when you switched the eye graft.
+• Two coats could hang on one hook. A headset looked like a motorbike helmet.
+
+KNOWN ISSUES
+• Both players in co-op need v0.4.1.
+• The first launch of a new build takes longer while your graphics card prepares its shaders.`
+  },
+  {
     date: '2026-10-22',
     title: 'v0.4.0 — Colours, locks, and witnesses who run out of patience',
     author: 'Squishtech Industries',
