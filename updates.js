@@ -3,6 +3,34 @@
 // { date: 'YYYY-MM-DD', title: 'vX.Y.Z — Title', author: 'Squishtech Industries', body: `Intro.\n\nNEW\n• ...\n\nCHANGED\n• ...\n\nFIXED\n• ...\n\nKNOWN ISSUES\n• ...` },
 window.STORE_UPDATES = [
   {
+    date: '2026-10-24',
+    title: 'v0.4.2 — Smoother, and in step',
+    author: 'Squishtech Industries',
+    body: `Our first three-player co-op session turned up a list of things partners couldn't see or didn't agree on. They're fixed. A big town also runs much more smoothly now, and there's a benchmark you can run and send us. Both players in co-op need v0.4.2.
+
+NEW
+• Benchmark, on the main menu: it builds a town and drives every street at night, measuring how your machine keeps up. Run it, then press F1 and send the report: the results go in it.
+• The main menu tells you when a new build is out, with a button to the download page.
+• Stuck somewhere with no way out? You're set down on the nearest floor after a few seconds, and the pause screen has UNSTUCK.
+
+CHANGED
+• Much smoother in a big town: on the 25-building district the frame rate is up by about a third, the slowest moments by half, and stutters are nearly gone.
+• No gun and no watch at the wheel of a car or on a bike.
+• Sitting down waits for E to be let go; hold it on a chair to pick the chair up.
+
+FIXED
+• Co-op: you see your partner's gun in their hand, and see them aim, reload, fire, check their watch, sprint, reach and throw.
+• Co-op: lifts and doors agree on every machine.
+• Co-op: the car no longer stops when partners ride in it; each kind of car seats a passenger at its own height; a partner on a motorbike rides it instead of standing in the air.
+• Someone you question in a moving lift goes with it instead of sinking through the floor.
+• Smashed fence panels no longer fly into the sky, and are cleared away later.
+• No see-through gaps in people's backs.
+
+KNOWN ISSUES
+• On the district map's east edge, a car driven off the end of one street can fall out of the world.
+• A partner riding in your car can still draw a gun and look at their watch.`
+  },
+  {
     date: '2026-10-23',
     title: 'v0.4.1 — From your first comments',
     author: 'Squishtech Industries',
