@@ -1,0 +1,33 @@
+name = "squishtech-playtest-portal"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Uncomment once your domain is on Cloudflare, to serve the portal from it instead of *.workers.dev:
+# routes = [{ pattern = "portal.YOUR-DOMAIN", custom_domain = true }]
+
+[observability]
+enabled = true
+
+[vars]
+# The landing page's address(es), comma separated, so browsers let it call /access. "*" allows any.
+ALLOWED_ORIGINS = "https://playtest.YOUR-DOMAIN, https://csdavisbusiness.github.io"
+# Where the error pages' "Back" link goes.
+SITE_URL = "https://playtest.YOUR-DOMAIN"
+
+# slug = the private repository holding that game's releases (tagged build-<n>, one .zip each).
+# The slugs must match site/games.js.
+[vars.GAMES]
+offrecord = "csdavisbusiness/offrecord-builds"
+stonethrone = "csdavisbusiness/StoneThrone-bug-reports"
+boredtodepth = "csdavisbusiness/BoredToDepth-builds"
+nighthunt = "csdavisbusiness/NightHunt-builds"
+crowdcontrol = "csdavisbusiness/crowdcontrolboardgame-builds"
+
+# Access codes and the download log. Create it once with `npx wrangler kv namespace create CODES`
+# and paste the id it prints here.
+[[kv_namespaces]]
+binding = "CODES"
+id = "PASTE-THE-KV-NAMESPACE-ID"
+
+# Secret, set once with `npx wrangler secret put GITHUB_TOKEN` (never written in a file):
+#   GITHUB_TOKEN  a fine-grained token, Contents: read-only, on exactly the five repositories above
