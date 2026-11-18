@@ -10,6 +10,8 @@
 //   POST /access   {code}      {ok, name, games:[slug...]} for a valid code, 403 otherwise
 //   POST /download/<slug>      form field `code`. 303 to GitHub's own short-lived link for that game's newest zip,
 //                              so the file comes straight from GitHub's storage, and logs who took which build.
+//                              Each code may download each game MAX_DOWNLOADS_PER_GAME times; then it gets a
+//                              polite refusal until `testers.cmd reset` clears its count.
 //
 // Access codes live in the CODES KV namespace under `code:<sha256 of the normalised code>`, so the namespace never
 // holds a usable code. tools: portal/testers.ps1 adds, lists and revokes them and reads the download log.
@@ -117,8 +119,18 @@ async function sha256(text) {
 async function tester(env, code) {
   const c = normalise(code);
   if (c.length < 10 || c.length > 40) return null;
-  const rec = await env.CODES.get(`code:${await sha256(c)}`, "json");
-  return rec && !rec.revoked ? rec : null;
+  const hash = await sha256(c);
+  const rec = await env.CODES.get(`code:${hash}`, "json");
+  return rec && !rec.revoked ? { ...rec, hash } : null;
+}
+
+// How many times each game has been downloaded with one code: `count:<hash>` = {slug: n}. The same numbers ride in
+// the key's metadata, with the tester's name, so testers.ps1 can list them without reading every key.
+const limitOf = env => { const n = parseInt(env.MAX_DOWNLOADS_PER_GAME, 10); return n > 0 ? n : Infinity; };
+const countsOf = async (env, t) => (await env.CODES.get(`count:${t.hash}`, "json")) || {};
+async function addDownload(env, t, counts, slug) {
+  const next = { ...counts, [slug]: (counts[slug] || 0) + 1 };
+  await env.CODES.put(`count:${t.hash}`, JSON.stringify(next), { metadata: { name: t.name, ...next } });
 }
 
 function allowedGames(env, t) {
@@ -138,6 +150,15 @@ async function download(request, env, ctx, slug) {
   const zip = rel && (rel.assets || []).find(a => /\.zip$/i.test(a.name));
   if (!zip) return page(env, 404, "No build yet", "There's no build of this game to download yet. Check back soon.");
 
+  // First installs only come through here (games update through their own relays), so a code that keeps
+  // downloading the same game is most likely being shared.
+  const counts = await countsOf(env, t);
+  if ((counts[slug] || 0) >= limitOf(env)) {
+    console.log(JSON.stringify({ event: "limit", tester: t.name, game: slug, count: counts[slug] }));
+    return page(env, 429, "This code has reached its download limit",
+      "Your code has already downloaded this playtest the most times it can. Once installed, the game keeps itself up to date, so you shouldn't need it again. If you do, contact us and we'll reset it.");
+  }
+
   const res = await gh(env, `/repos/${repo}/releases/assets/${zip.id}`, {
     headers: { accept: "application/octet-stream" },
     redirect: "manual",
@@ -146,7 +167,8 @@ async function download(request, env, ctx, slug) {
   if (!location) throw new Error(`GitHub gave no download link for ${repo} asset ${zip.id} (${res.status})`);
 
   const build = buildNumber(rel.tag_name);
-  console.log(JSON.stringify({ event: "download", tester: t.name, game: slug, build }));
+  await addDownload(env, t, counts, slug);
+  console.log(JSON.stringify({ event: "download", tester: t.name, game: slug, build, count: (counts[slug] || 0) + 1 }));
   ctx.waitUntil(env.CODES.put(`log:${new Date().toISOString()}:${crypto.randomUUID().slice(0, 8)}`, "", {
     expirationTtl: 90 * 24 * 3600,
     metadata: { tester: t.name, game: slug, build },

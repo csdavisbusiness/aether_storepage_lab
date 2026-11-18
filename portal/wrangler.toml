@@ -13,6 +13,8 @@ enabled = true
 ALLOWED_ORIGINS = "https://csdavisbusiness.github.io"
 # Where the error pages' "Back" link goes.
 SITE_URL = "https://csdavisbusiness.github.io/aether_storepage_lab/"
+# How many times one access code may download each game before it's refused. `testers.cmd reset "Name"` clears it.
+MAX_DOWNLOADS_PER_GAME = "3"
 
 # slug = the private repository holding that game's releases (tagged build-<n>, one .zip each).
 # The slugs must match site/games.js.

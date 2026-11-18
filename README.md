@@ -66,14 +66,21 @@ From `portal/`, in PowerShell:
 ```
 .\testers.cmd add "Jane Doe"                       # every playtest
 .\testers.cmd add "Jane Doe" offrecord,nighthunt   # just these
-.\testers.cmd list
+.\testers.cmd list                                 # games and download counts; flags codes at the limit
 .\testers.cmd revoke "Jane Doe"
+.\testers.cmd reset "Jane Doe"                     # clear their download counts
 .\testers.cmd log                                  # who downloaded which build, last 90 days (UTC)
 ```
 
 A code is shown once, when it's made, and only its SHA-256 is stored. If a code is lost, revoke it and add a new
 one. To change someone's games, revoke their code and add a new one. A tester's saved code is re-checked every time
 they visit, so a revoked code stops working at once.
+
+**Download limit.** Each code may download each game `MAX_DOWNLOADS_PER_GAME` times (3, in `portal/wrangler.toml`);
+after that the portal shows a polite "download limit reached, contact us" page. Only first installs come through
+the site (games update themselves through their own relays), so a code that keeps downloading the same game is
+probably being shared. `list` marks codes that have hit the limit; `reset` clears a genuine case. To change the
+limit, edit the number and run `npx.cmd wrangler deploy` in `portal/`.
 
 ## Adding a game or a build
 
