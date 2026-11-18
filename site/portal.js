@@ -208,10 +208,25 @@
     list.replaceChildren(...GAMES.map((g, i) => {
       const id = 'dossier-' + g.slug;
       const open = first ? i === 0 : openSlugs.has(g.slug);
+      const shots = ((window.SQT_SCREENSHOTS || {})[g.slug] || []);
+      const cover = shots.find(s => s.src === g.art) || (g.art ? { src: g.art, title: '' } : shots[0]);
       const art = el('div', { class: 'art' });
-      if (g.art) art.append(el('img', { src: root + g.art, alt: `${g.title} screenshot`, loading: 'lazy' }));
+      const caption = el('span', { class: 'caption', text: cover ? cover.title : '' });
+      let img = null;
+      if (cover) art.append(img = el('img', { src: root + cover.src, alt: cover.title || `${g.title} screenshot`, loading: 'lazy' }));
       else { const p = el('div', { class: 'plate' }, el('span', { text: g.title })); p.style.setProperty('--g', g.accent || '#d7262e'); art.append(p); }
       art.append(el('span', { class: 'stamp', text: `FILE ${String(i + 1).padStart(2, '0')} // PLAYTEST` }), el('span', { class: 'reticle' }));
+      if (cover && cover.title) art.append(caption);
+      const strip = shots.length > 1 && img ? el('div', { class: 'contact', role: 'group', 'aria-label': `${g.title} screenshots` },
+        ...shots.map(s => {
+          const b = el('button', { type: 'button', 'aria-label': s.title || 'Screenshot', 'aria-current': String(s === cover) });
+          b.style.backgroundImage = `url(${JSON.stringify(root + s.thumb)})`;
+          b.addEventListener('click', () => {
+            img.src = root + s.src; img.alt = s.title || ''; caption.textContent = s.title;
+            b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-current', String(x === b)));
+          });
+          return b;
+        })) : null;
       return el('article', { class: 'dossier' + (open ? ' is-open' : ''), 'data-slug': g.slug },
         el('button', { class: 'tab', type: 'button', 'aria-expanded': String(open), 'aria-controls': id },
           el('span', { class: 'num', text: String(i + 1).padStart(2, '0') }),
@@ -221,7 +236,7 @@
         el('div', { class: 'fold', id },
           el('div', { class: 'inner' },
             el('div', { class: 'sheet' },
-              el('div', { class: 'leaf' }, art),
+              el('div', { class: 'leaf' }, art, strip),
               el('div', { class: 'brief' },
                 el('div', { class: 'leaf' }, el('p', { class: 'tagline', text: g.tagline || '' })),
                 el('div', { class: 'leaf' }, el('div', { class: 'chips' }, ...(g.tags || []).map(t => el('span', { text: t }))), ),

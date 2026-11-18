@@ -167,23 +167,21 @@ The playtest isn’t code-signed yet: if Windows says it protected your PC, choo
 (function () {
   const root = '../../';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const shots = ((window.SQT_SCREENSHOTS || {}).offrecord || []).map(p => root + p);
+  const shots = ((window.SQT_SCREENSHOTS || {}).offrecord || []).map(s => ({ src: root + s.src, thumb: root + s.thumb, title: s.title }));
   const bg = document.getElementById('heroBg');
   const strip = document.getElementById('filmstrip');
   const url = u => 'url(' + JSON.stringify(u) + ')';
-  let current = Math.max(0, shots.findIndex(s => /streets/i.test(s)));
   function show(i) {
-    current = i;
-    if (shots[i]) bg.style.backgroundImage = url(shots[i]);
+    if (shots[i]) { bg.style.backgroundImage = url(shots[i].src); bg.setAttribute('aria-label', 'Off Record: ' + shots[i].title); }
     strip.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', String(i === j)));
   }
-  shots.forEach((u, i) => {
+  shots.forEach((s, i) => {
     const b = document.createElement('button');
-    b.type = 'button'; b.style.backgroundImage = url(u); b.setAttribute('aria-label', 'Show screenshot ' + (i + 1));
+    b.type = 'button'; b.style.backgroundImage = url(s.thumb); b.setAttribute('aria-label', s.title || 'Screenshot ' + (i + 1)); b.title = s.title;
     b.addEventListener('click', () => show(i));
     strip.append(b);
   });
-  show(current);
+  show(0);
   if (!reduce) addEventListener('scroll', () => { bg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.04)`; }, { passive: true });
 
   // field reports: each a fold, the newest open
