@@ -1,2 +1,5 @@
 # Drop folder for reference material shared while working on the site; never published.
 assets/STI/
+
+# Wrangler's local cache (account id and name)
+portal/.wrangler/

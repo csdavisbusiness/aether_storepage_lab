@@ -1,11 +1,11 @@
 <#
 Manage playtester access codes for the Squishtech playtest portal.
 
-  .\testers.ps1 add "Jane Doe"                         a code for every playtest
-  .\testers.ps1 add "Jane Doe" offrecord,nighthunt     a code for just these
-  .\testers.ps1 list                                   who has a code, and for what
-  .\testers.ps1 revoke "Jane Doe"                      that person's code stops working at once
-  .\testers.ps1 log                                    who downloaded which build (last 90 days)
+  .\testers.cmd add "Jane Doe"                         a code for every playtest
+  .\testers.cmd add "Jane Doe" offrecord,nighthunt     a code for just these
+  .\testers.cmd list                                   who has a code, and for what
+  .\testers.cmd revoke "Jane Doe"                      that person's code stops working at once
+  .\testers.cmd log                                    who downloaded which build (last 90 days)
 
 The code is shown once, when it's made. Only its hash is stored, so a lost code can't be looked up: revoke it and
 add a new one. Needs Node.js and a `npx wrangler login` done once in this folder.
@@ -21,7 +21,7 @@ Set-Location $PSScriptRoot
 $known = @('offrecord', 'stonethrone', 'boredtodepth', 'nighthunt', 'crowdcontrol')
 
 function Invoke-Wrangler([string[]]$WranglerArgs) {
-  $out = & npx --yes wrangler@4 @WranglerArgs
+  $out = & npx.cmd --yes wrangler@4 @WranglerArgs
   if ($LASTEXITCODE -ne 0) { throw "wrangler $($WranglerArgs -join ' ') failed" }
   return ($out -join "`n")
 }
@@ -55,7 +55,7 @@ function Get-Hash([string]$Code) {
 
 switch ($Command) {
   'add' {
-    if (-not $Name) { throw 'Give the tester a name: .\testers.ps1 add "Jane Doe"' }
+    if (-not $Name) { throw 'Give the tester a name: .\testers.cmd add "Jane Doe"' }
     $list = @($Games | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim().ToLowerInvariant() } | Where-Object { $_ })
     if ($list -contains 'all' -or $list -contains '*') { $list = @('*') }
     foreach ($g in $list) { if ($g -ne '*' -and $known -notcontains $g) { throw "Unknown game '$g'. Known: $($known -join ', ')" } }
@@ -80,9 +80,9 @@ switch ($Command) {
     } | Sort-Object Tester | Format-Table -AutoSize
   }
   'revoke' {
-    if (-not $Name) { throw 'Whose code? .\testers.ps1 revoke "Jane Doe"' }
+    if (-not $Name) { throw 'Whose code? .\testers.cmd revoke "Jane Doe"' }
     $keys = @(Get-Keys 'code:' | Where-Object { $_.metadata.name -eq $Name } | ForEach-Object { $_.name })
-    if (-not $keys.Count) { throw "No code found for '$Name'. See .\testers.ps1 list" }
+    if (-not $keys.Count) { throw "No code found for '$Name'. See .\testers.cmd list" }
     $file = Write-Json $keys
     try { Invoke-Wrangler @('kv', 'bulk', 'delete', $file, '--binding', 'CODES', '--remote', '--force') | Out-Null } finally { Remove-Item $file }
     Write-Host "Revoked $($keys.Count) code(s) for $Name."

@@ -10,9 +10,9 @@ enabled = true
 
 [vars]
 # The landing page's address(es), comma separated, so browsers let it call /access. "*" allows any.
-ALLOWED_ORIGINS = "https://playtest.YOUR-DOMAIN, https://csdavisbusiness.github.io"
+ALLOWED_ORIGINS = "https://csdavisbusiness.github.io"
 # Where the error pages' "Back" link goes.
-SITE_URL = "https://playtest.YOUR-DOMAIN"
+SITE_URL = "https://csdavisbusiness.github.io/aether_storepage_lab/"
 
 # slug = the private repository holding that game's releases (tagged build-<n>, one .zip each).
 # The slugs must match site/games.js.
@@ -27,7 +27,7 @@ crowdcontrol = "csdavisbusiness/crowdcontrolboardgame-builds"
 # and paste the id it prints here.
 [[kv_namespaces]]
 binding = "CODES"
-id = "PASTE-THE-KV-NAMESPACE-ID"
+id = "90b78fd17ff54b26a45119ddef1ebce0"
 
 # Secret, set once with `npx wrangler secret put GITHUB_TOKEN` (never written in a file):
 #   GITHUB_TOKEN  a fine-grained token, Contents: read-only, on exactly the five repositories above
