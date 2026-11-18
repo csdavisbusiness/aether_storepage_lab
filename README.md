@@ -1,6 +1,6 @@
 # Squishtech Playtests
 
-The landing page for Squishtech Industries Publishing's closed playtests. Testers enter a personal access code and
+The landing page for Squishtech Industries' closed playtests. Testers enter a personal access code and
 download any playtest they've been given. After that, each game updates itself through its own relay. The site is
 static (GitHub Pages). Downloads go through a small Cloudflare Worker, the **portal**, which is the only thing that can
 read the private build repositories.
