@@ -42,6 +42,63 @@ window.SQT_SCREENSHOTS = {
       "title": "Manual"
     }
   ],
+  "crowdcontrol": [
+    {
+      "src": "assets/crowdcontrol/01-the-lobby.webp",
+      "thumb": "assets/crowdcontrol/thumbs/01-the-lobby.webp",
+      "title": "The lobby"
+    },
+    {
+      "src": "assets/crowdcontrol/02-three-rings.webp",
+      "thumb": "assets/crowdcontrol/thumbs/02-three-rings.webp",
+      "title": "Three rings"
+    },
+    {
+      "src": "assets/crowdcontrol/03-hotels-on-red-banner.webp",
+      "thumb": "assets/crowdcontrol/thumbs/03-hotels-on-red-banner.webp",
+      "title": "Hotels on red banner"
+    },
+    {
+      "src": "assets/crowdcontrol/04-plinko-on-the-stage.webp",
+      "thumb": "assets/crowdcontrol/thumbs/04-plinko-on-the-stage.webp",
+      "title": "Plinko on the stage"
+    },
+    {
+      "src": "assets/crowdcontrol/05-stacks.webp",
+      "thumb": "assets/crowdcontrol/thumbs/05-stacks.webp",
+      "title": "Stacks"
+    },
+    {
+      "src": "assets/crowdcontrol/06-whack-a-mole.webp",
+      "thumb": "assets/crowdcontrol/thumbs/06-whack-a-mole.webp",
+      "title": "Whack a mole"
+    },
+    {
+      "src": "assets/crowdcontrol/07-spot-it-duel.webp",
+      "thumb": "assets/crowdcontrol/thumbs/07-spot-it-duel.webp",
+      "title": "Spot it duel"
+    },
+    {
+      "src": "assets/crowdcontrol/08-zombie-tag.webp",
+      "thumb": "assets/crowdcontrol/thumbs/08-zombie-tag.webp",
+      "title": "Zombie tag"
+    },
+    {
+      "src": "assets/crowdcontrol/09-king-of-the-hill.webp",
+      "thumb": "assets/crowdcontrol/thumbs/09-king-of-the-hill.webp",
+      "title": "King of the hill"
+    },
+    {
+      "src": "assets/crowdcontrol/10-duel-result.webp",
+      "thumb": "assets/crowdcontrol/thumbs/10-duel-result.webp",
+      "title": "Duel result"
+    },
+    {
+      "src": "assets/crowdcontrol/11-the-whole-table.webp",
+      "thumb": "assets/crowdcontrol/thumbs/11-the-whole-table.webp",
+      "title": "The whole table"
+    }
+  ],
   "nighthunt": [
     {
       "src": "assets/nighthunt/01-working-the-bolt.webp",

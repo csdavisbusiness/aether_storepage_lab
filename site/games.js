@@ -38,6 +38,7 @@ window.SQT_GAMES = [
   },
   {
     slug: 'crowdcontrol',
+    art: 'assets/crowdcontrol/02-three-rings.webp',
     title: 'Crowd Control',
     tagline: 'A property-trading board game that is deliberately, gleefully unfair: every rule is resolved in code.',
     tags: ['Board game', 'Party', 'Local multiplayer'],
