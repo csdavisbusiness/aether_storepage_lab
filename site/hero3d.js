@@ -1,6 +1,7 @@
 // The hero: a paper iris. Eight creased origami petals lie over the STI emblem, fold open toward the viewer,
 // and fold shut again as the page scrolls away. A tick-marked reticle turns behind it; dust drifts through.
 // Needs WebGL; without it, the page keeps the static logo in .hero-fallback.
+// Five clicks on the emblem, or the Konami code, load the hidden game in aperture.js.
 import * as THREE from 'three';
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 
@@ -151,13 +152,16 @@ function start() {
       lamp.position.set(aim.x * 4, aim.y * 3, 3.5);
       emblem.rotation.y = Math.sin(now / 3100) * 0.08;
     }
+    kick *= 0.9;
+    emblem.scale.setScalar(1 + kick * 0.07);
+    arcSpin.rotation.z -= kick * 0.08;
     renderer.render(scene, camera);
   }
   function loop() {
     if (running) return;
     running = true;
     const step = now => {
-      if (!visible) { running = false; return; }
+      if (!visible || playing) { running = false; return; }
       frame(now);
       requestAnimationFrame(step);
     };
@@ -165,4 +169,39 @@ function start() {
   }
   loop();
   document.documentElement.classList.add('has-3d');
+
+  // ---- the secret: five clicks on the emblem (or the Konami code) open Aperture ---------------------------------
+  let kick = 0, taps = [], playing = false;
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  renderer.domElement.addEventListener('pointerdown', e => {
+    if (playing) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    if (!ray.intersectObjects([back, emblem], true).length) return;
+    const now = performance.now();
+    taps = taps.filter(t => now - t < 2500); taps.push(now);
+    kick = 1;
+    if (taps.length >= 5) { taps = []; play(); }
+  });
+  const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let ki = 0;
+  addEventListener('keydown', e => {
+    if (playing) return;
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    ki = k === KONAMI[ki] ? ki + 1 : (k === KONAMI[0] ? 1 : 0);
+    if (ki === KONAMI.length) { ki = 0; play(); }
+  });
+  async function play() {
+    if (playing) return;
+    playing = true;
+    try {
+      const { start } = await import('./aperture.js');
+      start({ THREE, renderer, scene, camera, rig, iris, reticle, dust, hero: host.closest('.hero'),
+        onExit() { playing = false; resize(); loop(); } });
+    } catch (err) {
+      console.warn('Aperture failed to load:', err);
+      playing = false; loop();
+    }
+  }
 }
