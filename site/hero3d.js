@@ -193,7 +193,7 @@ function start() {
     if (ki === KONAMI.length) { ki = 0; play(); }
   });
   async function play() {
-    if (playing) return;
+    if (playing || document.documentElement.classList.contains('in-game')) return;   // another game is open
     playing = true;
     try {
       const { start } = await import('./aperture.js');

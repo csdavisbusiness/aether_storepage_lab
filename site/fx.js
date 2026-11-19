@@ -76,4 +76,44 @@
     tab.setAttribute('aria-expanded', String(open));
     if (open) item.querySelectorAll('[data-decode]').forEach(el => { delete el.dataset.decoded; decode(el); });
   });
+
+  // the footer's secret: grab Squish and drag a full loop-the-loop around him, and Draft opens (site/draft.js)
+  const squish = document.querySelector('.site-foot img.head');
+  const draftUrl = document.currentScript ? new URL('draft.js', document.currentScript.src).href : null;
+  if (squish && draftUrl) {
+    squish.draggable = false;
+    let g = null;
+    const NS = 'http://www.w3.org/2000/svg';
+    const end = () => {
+      if (!g) return;
+      const { svg } = g; g = null;
+      svg.style.opacity = '0'; setTimeout(() => svg.remove(), 500);
+    };
+    squish.addEventListener('pointerdown', e => {
+      if (e.button !== 0 || document.documentElement.classList.contains('in-game')) return;
+      e.preventDefault();
+      try { squish.setPointerCapture(e.pointerId); } catch { /* not a live pointer */ }
+      const r = squish.getBoundingClientRect();
+      const svg = document.createElementNS(NS, 'svg'), line = document.createElementNS(NS, 'polyline');
+      svg.setAttribute('class', 'loop-trace'); svg.append(line); document.body.append(svg);
+      g = { cx: r.left + r.width / 2, cy: r.top + r.height / 2, turn: 0, prev: null, pts: [], svg, line };
+    });
+    squish.addEventListener('pointermove', e => {
+      if (!g) return;
+      g.pts.push(Math.round(e.clientX) + ',' + Math.round(e.clientY));
+      g.line.setAttribute('points', g.pts.join(' '));
+      const dx = e.clientX - g.cx, dy = e.clientY - g.cy;
+      if (Math.hypot(dx, dy) < 26) { g.prev = null; return; }            // only turns made outside him count
+      const a = Math.atan2(dy, dx);
+      if (g.prev !== null) { let d = a - g.prev; if (d > Math.PI) d -= 2 * Math.PI; if (d < -Math.PI) d += 2 * Math.PI; g.turn += d; }
+      g.prev = a;
+      if (Math.abs(g.turn) >= 2 * Math.PI) {
+        const from = { x: g.cx, y: g.cy };
+        g.svg.classList.add('done'); end();
+        import(draftUrl).then(m => m.start({ from })).catch(err => console.warn('Draft failed to load:', err));
+      }
+    });
+    squish.addEventListener('pointerup', end);
+    squish.addEventListener('pointercancel', end);
+  }
 })();
